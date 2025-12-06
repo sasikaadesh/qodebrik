@@ -33,6 +33,38 @@
 			color: $primary;
 		}
 	}
+	// Mobile hamburger icon
+	.mobile-menu-toggle {
+		display: inline-block;
+		width: 24px;
+		height: 18px;
+		position: relative;
+		cursor: pointer;
+		vertical-align: middle;
+
+		span {
+			display: block;
+			position: absolute;
+			height: 2px;
+			width: 100%;
+			background: $white;
+			border-radius: 2px;
+			opacity: 1;
+			left: 0;
+			transition: .25s ease-in-out;
+
+			&:nth-child(1) {
+				top: 0;
+			}
+			&:nth-child(2) {
+				top: 8px;
+			}
+			&:nth-child(3) {
+				top: 16px;
+			}
+		}
+	}
+
 	.site-nav-ul, .site-nav-ul-none-onepage {
 		text-align: center;
 		&, & > li {
