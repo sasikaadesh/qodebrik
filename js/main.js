@@ -76,14 +76,14 @@ var siteIstotope = function() {
 				setTimeout(function() {
 
 					tl2
-						tl2.set(img, {  scale: '2.0', autoAlpha: 1, })
-						.to(cover, 1, { marginLeft: '0', ease:Expo.easeInOut, onComplete() {
+						tl2.set(img, {  scale: '1.6', autoAlpha: 1, })
+						.to(cover, 0.5, { marginLeft: '0', ease:Expo.easeInOut, onComplete() {
 							tl2.set(revealContent, { autoAlpha: 1 });
-							tl2.to(cover, 1, { marginLeft: '102%', ease:Expo.easeInOut });
-							tl2.to(img, 2, { scale: '1.0', ease:Expo.easeOut }, '-=1.5');
+							tl2.to(cover, 0.5, { marginLeft: '102%', ease:Expo.easeInOut });
+							tl2.to(img, 0.8, { scale: '1.0', ease:Expo.easeOut }, '-=0.6');
 						} } )
 
-				}, i * 700);
+				}, i * 250);
 
 				
 
