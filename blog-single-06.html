@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Your Dashboard Is Not a Data Strategy: Getting Real Value from Your Numbers | Qodebrik Insights</title>
+    <title>Why We Build on Next.js and React (And When We Don't) | Qodebrik Insights</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Most businesses have dashboards nobody opens. A practical guide to building analytics that change decisions — what to measure, what to ignore, and when machine learning is actually worth it.">
-    <meta name="keywords" content="business dashboards, data strategy, analytics, machine learning, predictive analytics, KPI dashboard design">
+    <meta name="description" content="An honest look at the stack behind our work — why Next.js and React suit most client projects, what they cost you, and the cases where WordPress or plain HTML is the better call.">
+    <meta name="keywords" content="Next.js, React, web development stack, WordPress vs Next.js, headless, Core Web Vitals, technology choice">
     <meta name="author" content="Qodebrik Team">
     <link rel="stylesheet" href="css/vendor/icomoon/style.css">
     <link rel="stylesheet" href="css/vendor/owl.carousel.min.css">
@@ -54,12 +54,12 @@
             </div>
           </div>
         </nav>
-        <div class="cover-v1 jarallax overlay" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
+        <div class="cover-v1 jarallax overlay" style="background-image: url('https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
           <div class="container">
             <div class="row align-items-center">
               <div class="col-md-8 mx-auto text-center">
-                <h1 class="blog-heading" data-aos="fade-up" data-aos-delay="0">Your Dashboard Is Not a Data Strategy</h1>
-                <div class="post-meta" data-aos="fade-up" data-aos-delay="100">By Qodebrik Team on June 16, 2026 &bullet; 9 mins read</div>
+                <h1 class="blog-heading" data-aos="fade-up" data-aos-delay="0">Why We Build on Next.js and React (And When We Don't)</h1>
+                <div class="post-meta" data-aos="fade-up" data-aos-delay="100">By Qodebrik Team on September 2, 2026 &bullet; 8 mins read</div>
               </div>
             </div>
           </div>
@@ -72,37 +72,60 @@
           <div class="container">
             <div class="row justify-content-center">
               <div class="col-md-7">
-                <h3 class="mb-4">The Dashboard Nobody Opens</h3>
-                <p>We've built a lot of dashboards, and we've seen the same pattern often enough to name it. A company commissions a dashboard. It launches to genuine enthusiasm. Six weeks later, one person checks it on Monday mornings. Six months later, nobody does.</p>
-                <p>The cause is almost never the technology. It's that the dashboard answers questions nobody was actually going to act on. Twenty-four charts showing that things are broadly fine is not information — it's decoration. This article is about building the other kind.</p>
-                <p><img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Data visualization on multiple screens" class="img-fluid rounded"></p>
-                <h3 class="mb-4 mt-5">Start With the Decision, Not the Data</h3>
-                <p>The single most useful question before building anything: <em>what decision will this number change?</em> If there's no answer, the metric doesn't belong on the screen.</p>
-                <p>Run it through properly. "We want to track customer churn" is a wish. "When monthly churn in a segment crosses 4%, the account team calls every customer in that segment that week" is a decision — and it tells you exactly what to build: one number, one threshold, one alert, one owner.</p>
-                <p>This reframing usually shrinks a requested dashboard by two-thirds, and the remaining third gets used. A good rule of thumb: every metric on the screen needs a name attached to it. If nobody owns it, nobody acts on it.</p>
-                <p><strong>The metrics that reliably earn their place</strong> are the ones tied to a lever you can actually pull — conversion rate at a specific step, cost per acquisition by channel, gross margin by product line, time-to-resolution in support. The ones that rarely do are vanity aggregates: total pageviews, cumulative signups, follower counts. They go up. They tell you nothing about what to do tomorrow.</p>
-                <p><img src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Machine learning algorithm visualization" class="img-fluid rounded"></p>
-                <h3 class="mb-4 mt-5">Fix the Boring Layer First</h3>
-                <p>Before any of this works, the unglamorous part has to be right. In our experience this is where most data projects quietly fail:</p>
+                <h3 class="mb-4">"What Will You Build It In?"</h3>
+                <p>It's a fair question, and it deserves a better answer than a list of logos. The technology choice determines what your site costs to run, how quickly it can be changed, who can change it, and whether you're stuck with us in two years. Those are business questions wearing technical clothing.</p>
+                <p>Most of our work is built with React and Next.js. Here's the honest reasoning — including the parts that count against them, and the projects where we recommend something else entirely.</p>
+                <p><img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Code on a developer's screen" class="img-fluid rounded"></p>
+
+                <h3 class="mb-4 mt-5">What React Actually Gives You</h3>
+                <p>React's core idea is that an interface is built from components — self-contained pieces like a booking form, a pricing card, a navigation bar — that you define once and reuse everywhere.</p>
+                <p>The commercial consequence matters more than the technical one. When your brand colour changes, or a legal disclaimer needs adding to every quote form, it's one edit rather than forty. On a site of any real size, that difference compounds across every change you'll ever request. It's also why later phases of a project tend to cost less per feature than the first — the pieces already exist.</p>
+                <p>The second benefit is hiring. React is the most widely used interface library in the industry, which means your project isn't dependent on a niche skill set. If you ever part ways with us, you can find someone to pick it up. We think that's a point in a studio's favour, not against it.</p>
+
+                <h3 class="mb-4 mt-5">What Next.js Adds</h3>
+                <p>React alone has a well-known weakness: done naively, the browser downloads an empty page and then a large bundle of JavaScript that draws the content. That's slow on a mid-range phone, and historically it was bad for search engines.</p>
+                <p>Next.js fixes this by rendering pages on the server or building them ahead of time, so the visitor receives real HTML immediately. Practically, that gives you:</p>
                 <ul>
-                  <li><strong>One definition per metric.</strong> If finance and marketing calculate "active customer" differently, every meeting becomes an argument about whose number is correct. Write the definitions down once.</li>
-                  <li><strong>Trustworthy pipelines.</strong> A dashboard that was silently three days stale once will never be fully trusted again. Show the last-updated timestamp on the screen.</li>
-                  <li><strong>Access without a gatekeeper.</strong> If getting a number requires emailing someone, people stop asking, and decisions go back to being made on instinct.</li>
+                  <li><strong>Pages that are indexable and shareable</strong> – real content in the HTML, correct meta tags, working link previews.</li>
+                  <li><strong>Fast first paint</strong> – content appears without waiting on a JavaScript download, which is what Core Web Vitals actually measure.</li>
+                  <li><strong>Image handling that works by default</strong> – correct sizes and modern formats served automatically, which is one of the biggest wins available on most sites.</li>
+                  <li><strong>A backend when you need one</strong> – form handling, payment webhooks and API routes live in the same project instead of a separate service.</li>
                 </ul>
-                <h3 class="mb-4 mt-5">When Machine Learning Is Actually Worth It</h3>
-                <p>Plenty of problems sold as machine learning are better solved by a well-chosen threshold and a clear report. ML earns its cost when you have genuine volume, a pattern too complex to write rules for, and a prediction that changes behaviour — demand forecasting across thousands of SKUs, fraud scoring in real time, churn prediction with enough history behind it.</p>
-                <p>It's a poor fit when your dataset is small, when the relationship is simple enough to state in a sentence, or when nobody has decided what they'd do differently if the prediction came back positive. That last one catches more projects than people expect.</p>
-                <p>The good news for 2026: you rarely need a research team any more. Cloud forecasting services and modern analytics warehouses cover most common cases at modest cost, so the bottleneck is clean data and a clear question — not talent.</p>
-                <p><img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Team collaborating on data analysis" class="img-fluid rounded"></p>
-                <h3 class="mb-4 mt-5">Build the One-Screen Version First</h3>
-                <p>If you're starting from scratch, build the version that fits on one screen and answers three questions the leadership team already argues about. Ship it, watch who opens it, and let the second version be shaped by what people actually reached for. Dashboards that grow from real use stay in use; dashboards specified in a single workshop rarely do.</p>
-                <p class="mt-5"><em>Qodebrik builds financial and operational dashboards that people keep open. <a href="index.html#contact-section">Let's discuss</a> the decisions yours needs to support.</em></p>
+                <p>That last point is underrated for smaller projects. One codebase, one deployment, one thing to maintain.</p>
+                <p><img src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Abstract visualisation of a rendering pipeline" class="img-fluid rounded"></p>
+
+                <h3 class="mb-4 mt-5">The Costs Nobody Mentions</h3>
+                <p>Every stack has a bill attached. Ours has these:</p>
+                <ul>
+                  <li><strong>Content editing needs a plan.</strong> Out of the box, changing text means changing code. We pair Next.js with a headless CMS so your team can edit without a developer — but that's a deliberate decision with its own cost, not something you get for free.</li>
+                  <li><strong>Hosting is not a £5 shared plan.</strong> It needs a platform that runs Node.js. Still inexpensive, but different from traditional web hosting.</li>
+                  <li><strong>The ecosystem moves fast.</strong> A project left untouched for three years will need real work to update. Budget for maintenance, or accept that a rebuild arrives sooner.</li>
+                  <li><strong>It's genuine engineering.</strong> There's no plugin marketplace where a feature can be bought for $49. Custom work is more flexible and costs more.</li>
+                </ul>
+
+                <h3 class="mb-4 mt-5">When We Recommend Something Else</h3>
+                <p>We'd rather talk you out of a stack than sell you one you don't need.</p>
+                <p><strong>WordPress</strong> is still the right answer for a content-led site where non-technical staff publish frequently, where the budget is tight, and where the required features map cleanly onto mature plugins. A well-built WordPress site beats a badly-built React one every time. The trade-off is plugin sprawl, ongoing security patching, and performance that needs active management.</p>
+                <p><strong>Shopify</strong> wins for straightforward retail. Payments, tax, shipping rules and fraud handling are solved problems, and rebuilding them custom is rarely money well spent. We'd reach for a custom front end only when the storefront experience is genuinely unusual.</p>
+                <p><strong>Plain HTML and CSS</strong> — like the site you're reading — is perfectly respectable for a handful of pages that change rarely. It's fast, cheap to host, and there is nothing to keep patched. Reaching for a framework here would be showing off at the client's expense.</p>
+                <p><img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Team reviewing a project together" class="img-fluid rounded"></p>
+
+                <h3 class="mb-4 mt-5">The Questions Worth Asking Any Developer</h3>
+                <p>Whoever you end up working with, these four answers tell you most of what you need to know:</p>
+                <ul>
+                  <li><strong>Who owns the code, and where does it live?</strong> The correct answer is you, in a repository you can access.</li>
+                  <li><strong>How do we edit content without calling you?</strong> If there's no good answer, you've bought a dependency.</li>
+                  <li><strong>What does hosting cost per month, and what happens at ten times the traffic?</strong></li>
+                  <li><strong>What does year two look like?</strong> Updates, security patches and small changes — priced, not vague.</li>
+                </ul>
+                <p>A studio that answers these plainly is one you can plan around. The stack matters far less than whether the people building it will tell you the truth about it.</p>
+                <p class="mt-5"><em>Weighing up how to build your next project? <a href="index.html#contact-section">Talk to us</a> — we'll give you a straight recommendation, including when it isn't us.</em></p>
                 <div class="mt-5 pt-4 border-top">
                   <span class="font-weight-bold">Tags:</span>
-                  <span class="badge badge-secondary">Dashboards</span>
-                  <span class="badge badge-secondary">Machine Learning</span>
-                  <span class="badge badge-secondary">Business Analytics</span>
-                  <span class="badge badge-secondary">Data Strategy</span>
+                  <span class="badge badge-secondary">Web Development</span>
+                  <span class="badge badge-secondary">Next.js</span>
+                  <span class="badge badge-secondary">React</span>
+                  <span class="badge badge-secondary">Technology Choice</span>
                   <span class="badge badge-secondary">2026</span>
                 </div>
               </div>
@@ -143,8 +166,8 @@
                   <li><a href="index.html#home-section">Home</a></li>
                   <li><a href="index.html#about-section">About Us</a></li>
                   <li><a href="index.html#portfolio-section">Portfolio</a></li>
-                  <li><a href="#services-section">Our Services</a></li>
-                  <li><a href="#journal-section">Insights</a></li>
+                  <li><a href="index.html#services-section">Our Services</a></li>
+                  <li><a href="index.html#journal-section">Insights</a></li>
                 </ul>
               </div>
               <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
@@ -203,10 +226,10 @@
         </div>
       </div>
     </div>
+    <!-- Loader -->
     <div id="unslate_co--overlayer"></div>
     <div class="site-loader-wrap"><div class="site-loader"></div></div>
     <script src="js/scripts-dist.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
-

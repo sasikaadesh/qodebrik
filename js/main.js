@@ -532,12 +532,101 @@ var jarallaxPlugin = function() {
 	});
 };
 
+/* ------------------------------------------------------------------
+ * EmailJS configuration
+ * Dashboard: https://dashboard.emailjs.com
+ *
+ * ADMIN_TEMPLATE_ID  – notification sent to ADMIN_EMAIL when someone
+ *                      submits the form.
+ * REPLY_TEMPLATE_ID  – optional auto-reply sent back to the visitor.
+ *                      Leave as '' to disable; set it once you have
+ *                      created the template in EmailJS.
+ * ------------------------------------------------------------------ */
+var EMAILJS_CONFIG = {
+	PUBLIC_KEY:        'YRHBS4C5EqZKKfbcX',
+	SERVICE_ID:        'service_sv2hsk3',
+	ADMIN_TEMPLATE_ID: 'template_qnticlm',
+	REPLY_TEMPLATE_ID: '',
+	ADMIN_EMAIL:       'qodebrik@gmail.com'
+};
+
 var contactForm = function() {
 	if ($('#contactForm').length > 0 ) {
 
-		// Initialize EmailJS with your public key
-		// Get your public key from: https://dashboard.emailjs.com/admin/account
-		emailjs.init("YRHBS4C5EqZKKfbcX"); // Replace with your EmailJS public key
+		if (typeof emailjs === 'undefined') {
+			console.error('EmailJS SDK failed to load – the contact form cannot send mail.');
+			return;
+		}
+
+		emailjs.init({ publicKey: EMAILJS_CONFIG.PUBLIC_KEY });
+
+		// Turns an EmailJS rejection into something a human can act on.
+		function describeFailure(error) {
+			var status = error && error.status;
+			var detail = (error && (error.text || error.message)) || 'Unknown error';
+			var hint;
+
+			switch (status) {
+				case 400:
+				case 422:
+					hint = 'The EmailJS template rejected the request – usually the recipient ' +
+					       '("To Email") field is empty or references a variable that was not sent.';
+					break;
+				case 401:
+				case 403:
+					hint = 'EmailJS refused the public key. Check the key is current and that this ' +
+					       'domain is listed under Account → Security → Allowed origins.';
+					break;
+				case 404:
+					hint = 'Service ID or Template ID not found – verify both in the EmailJS dashboard.';
+					break;
+				case 412:
+					hint = 'The connected mail service (e.g. Gmail) needs re-authorising in EmailJS.';
+					break;
+				case 426:
+				case 429:
+					hint = 'The EmailJS sending quota for this plan has been reached.';
+					break;
+				default:
+					hint = 'Check the browser console and the EmailJS dashboard logs for details.';
+			}
+
+			console.error('EmailJS send failed [' + status + ']: ' + detail + '\n→ ' + hint);
+			return { status: status, detail: detail };
+		}
+
+		function showSuccess() {
+			var note = EMAILJS_CONFIG.REPLY_TEMPLATE_ID
+				? '<br><span style="font-size:13px;opacity:.7;">A confirmation has been sent to your email address.</span>'
+				: '';
+			Swal.fire({
+				icon: 'success',
+				title: 'Thank you!',
+				html: 'Your message has been sent. We\'ll get back to you within one business day.' + note,
+				confirmButtonText: 'Close',
+				confirmButtonColor: '#d63447',
+				background: '#1c1c1c',
+				color: '#ffffff',
+				backdrop: 'rgba(0, 0, 0, 0.7)'
+			});
+		}
+
+		function showFailure(info) {
+			var mailto = 'mailto:' + EMAILJS_CONFIG.ADMIN_EMAIL;
+			Swal.fire({
+				icon: 'error',
+				title: 'Message not sent',
+				html: 'Sorry — we couldn\'t send your message just now. Please email us directly at ' +
+				      '<a href="' + mailto + '" style="color:#ff6b6b;">' + EMAILJS_CONFIG.ADMIN_EMAIL + '</a>.' +
+				      '<br><span style="font-size:12px;opacity:.6;">Reference: ' +
+				      (info.status || 'network') + ' – ' + info.detail + '</span>',
+				confirmButtonText: 'Try Again',
+				confirmButtonColor: '#d63447',
+				background: '#1c1c1c',
+				color: '#ffffff',
+				backdrop: 'rgba(0, 0, 0, 0.7)'
+			});
+		}
 
 		$( "#contactForm" ).validate( {
 			rules: {
@@ -562,111 +651,73 @@ var contactForm = function() {
 				message: "Please enter a message"
 			},
 			errorElement: 'span',
-			errorLabelContainer: '.form-error',
 			/* submit via EmailJS */
 			submitHandler: function(form) {
 				var $submit = $('.submitting'),
-					waitText = 'Sending...';
+					$button = $('#contactForm input[type="submit"]');
 
-				$submit.css('display', 'block').text(waitText);
+				$submit.css('display', 'block').text('Sending...');
+				$button.prop('disabled', true);
 
-				// Prepare template parameters
-				var templateParams = {
-					from_name: $('#name').val(),
-					from_email: $('#email').val(),
-					phone: $('#phone').val(),
-					message: $('#message').val(),
-					to_email: 'qodebrik@gmail.com'
+				var name    = $('#name').val(),
+					email   = $('#email').val(),
+					phone   = $('#phone').val(),
+					message = $('#message').val();
+
+				/* Several aliases are supplied for each value so the request
+				   works whichever variable names the EmailJS template uses. */
+				var adminParams = {
+					to_email:   EMAILJS_CONFIG.ADMIN_EMAIL,
+					to_name:    'Qodebrik',
+					from_name:  name,
+					name:       name,
+					user_name:  name,
+					from_email: email,
+					email:      email,
+					user_email: email,
+					reply_to:   email,
+					phone:      phone,
+					message:    message,
+					subject:    'New enquiry from ' + name + ' via qodebrik.com'
 				};
 
-				// Send email using EmailJS
-				// Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID' with your actual IDs
-				emailjs.send('service_sv2hsk3', 'template_qnticlm', templateParams)
+				emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.ADMIN_TEMPLATE_ID, adminParams)
 					.then(function(response) {
-						console.log('SUCCESS!', response.status, response.text);
+						console.log('Enquiry delivered to admin:', response.status, response.text);
+
+						// Optional auto-reply to the visitor. Never block or fail
+						// the submission on this – the enquiry is already through.
+						if (EMAILJS_CONFIG.REPLY_TEMPLATE_ID) {
+							emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.REPLY_TEMPLATE_ID, {
+								to_email:   email,
+								to_name:    name,
+								name:       name,
+								user_name:  name,
+								email:      email,
+								user_email: email,
+								reply_to:   EMAILJS_CONFIG.ADMIN_EMAIL,
+								from_name:  'Qodebrik',
+								phone:      phone,
+								message:    message
+							}).then(function() {
+								console.log('Auto-reply sent to visitor.');
+							}, function(error) {
+								describeFailure(error);
+							});
+						}
+
 						$submit.css('display', 'none');
+						$button.prop('disabled', false);
 
-						// Show beautiful glass effect success popup
-						Swal.fire({
-							title: '<span style="color: #4ade80; font-size: 42px;">✓</span>',
-							html: '<h3 style="color: #fff; margin: 10px 0 8px; font-size: 20px;">Message Sent!</h3><p style="font-size: 14px; opacity: 0.85; margin: 0;">Thank you for reaching out!<br>We\'ll get back to you shortly.</p>',
-							confirmButtonText: 'Great!',
-							showCloseButton: false,
-							backdrop: 'rgba(0, 0, 0, 0.7)',
-							showClass: {
-								popup: 'animate__animated animate__fadeInUp animate__faster'
-							},
-							hideClass: {
-								popup: 'animate__animated animate__fadeOutDown animate__faster'
-							},
-							didOpen: () => {
-								const popup = Swal.getPopup();
-								popup.style.background = 'rgba(255, 255, 255, 0.1)';
-								popup.style.backdropFilter = 'blur(20px)';
-								popup.style.webkitBackdropFilter = 'blur(20px)';
-								popup.style.border = '1px solid rgba(255, 255, 255, 0.2)';
-								popup.style.borderRadius = '20px';
-								popup.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.4)';
-								popup.style.padding = '24px 32px';
-								popup.style.width = 'auto';
-								popup.style.maxWidth = '320px';
-								popup.style.minWidth = '280px';
+						showSuccess();
 
-								// Style the confirm button
-								const btn = popup.querySelector('.swal2-confirm');
-								if (btn) {
-									btn.style.background = 'linear-gradient(135deg, #d63447 0%, #ff6b6b 100%)';
-									btn.style.border = 'none';
-									btn.style.borderRadius = '10px';
-									btn.style.padding = '12px 28px';
-									btn.style.fontSize = '14px';
-									btn.style.fontWeight = '600';
-									btn.style.boxShadow = '0 8px 20px rgba(214, 52, 71, 0.35)';
-									btn.style.marginTop = '8px';
-								}
-							}
-						});
-
-						// Reset the form
 						$('#contactForm')[0].reset();
 						$('.form-group').removeClass('field--not-empty');
 
 					}, function(error) {
-						console.log('FAILED...', error);
 						$submit.css('display', 'none');
-
-						// Show error popup with glass effect
-						Swal.fire({
-							icon: 'error',
-							title: 'Oops!',
-							text: 'Something went wrong. Please try again or email us directly.',
-							confirmButtonText: 'Try Again',
-							confirmButtonColor: '#d63447',
-							color: '#ffffff',
-							backdrop: 'rgba(0, 0, 0, 0.7)',
-							showClass: {
-								popup: 'animate__animated animate__shakeX'
-							},
-							didOpen: () => {
-								const popup = Swal.getPopup();
-								popup.style.background = 'rgba(255, 255, 255, 0.1)';
-								popup.style.backdropFilter = 'blur(20px)';
-								popup.style.webkitBackdropFilter = 'blur(20px)';
-								popup.style.border = '1px solid rgba(255, 255, 255, 0.2)';
-								popup.style.borderRadius = '24px';
-								popup.style.boxShadow = '0 25px 50px -12px rgba(0, 0, 0, 0.5)';
-
-								const btn = popup.querySelector('.swal2-confirm');
-								if (btn) {
-									btn.style.background = 'linear-gradient(135deg, #d63447 0%, #ff6b6b 100%)';
-									btn.style.border = 'none';
-									btn.style.borderRadius = '12px';
-									btn.style.padding = '14px 32px';
-									btn.style.fontSize = '16px';
-									btn.style.fontWeight = '600';
-								}
-							}
-						});
+						$button.prop('disabled', false);
+						showFailure(describeFailure(error));
 					});
 			}
 

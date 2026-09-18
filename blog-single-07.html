@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Your Dashboard Is Not a Data Strategy: Getting Real Value from Your Numbers | Qodebrik Insights</title>
+    <title>Website or Web App? How to Know What You Actually Need | Qodebrik Insights</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Most businesses have dashboards nobody opens. A practical guide to building analytics that change decisions — what to measure, what to ignore, and when machine learning is actually worth it.">
-    <meta name="keywords" content="business dashboards, data strategy, analytics, machine learning, predictive analytics, KPI dashboard design">
+    <meta name="description" content="Website, web app, or mobile app — the wrong choice costs months and a rebuild. A plain-English guide to telling them apart, what each realistically costs, and how to scope a first version.">
+    <meta name="keywords" content="website vs web app, web application development, MVP scoping, project planning, mobile app vs web app, software requirements">
     <meta name="author" content="Qodebrik Team">
     <link rel="stylesheet" href="css/vendor/icomoon/style.css">
     <link rel="stylesheet" href="css/vendor/owl.carousel.min.css">
@@ -54,12 +54,12 @@
             </div>
           </div>
         </nav>
-        <div class="cover-v1 jarallax overlay" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
+        <div class="cover-v1 jarallax overlay" style="background-image: url('https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
           <div class="container">
             <div class="row align-items-center">
               <div class="col-md-8 mx-auto text-center">
-                <h1 class="blog-heading" data-aos="fade-up" data-aos-delay="0">Your Dashboard Is Not a Data Strategy</h1>
-                <div class="post-meta" data-aos="fade-up" data-aos-delay="100">By Qodebrik Team on June 16, 2026 &bullet; 9 mins read</div>
+                <h1 class="blog-heading" data-aos="fade-up" data-aos-delay="0">Website or Web App? How to Know What You Actually Need</h1>
+                <div class="post-meta" data-aos="fade-up" data-aos-delay="100">By Qodebrik Team on July 28, 2026 &bullet; 7 mins read</div>
               </div>
             </div>
           </div>
@@ -72,37 +72,47 @@
           <div class="container">
             <div class="row justify-content-center">
               <div class="col-md-7">
-                <h3 class="mb-4">The Dashboard Nobody Opens</h3>
-                <p>We've built a lot of dashboards, and we've seen the same pattern often enough to name it. A company commissions a dashboard. It launches to genuine enthusiasm. Six weeks later, one person checks it on Monday mornings. Six months later, nobody does.</p>
-                <p>The cause is almost never the technology. It's that the dashboard answers questions nobody was actually going to act on. Twenty-four charts showing that things are broadly fine is not information — it's decoration. This article is about building the other kind.</p>
-                <p><img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Data visualization on multiple screens" class="img-fluid rounded"></p>
-                <h3 class="mb-4 mt-5">Start With the Decision, Not the Data</h3>
-                <p>The single most useful question before building anything: <em>what decision will this number change?</em> If there's no answer, the metric doesn't belong on the screen.</p>
-                <p>Run it through properly. "We want to track customer churn" is a wish. "When monthly churn in a segment crosses 4%, the account team calls every customer in that segment that week" is a decision — and it tells you exactly what to build: one number, one threshold, one alert, one owner.</p>
-                <p>This reframing usually shrinks a requested dashboard by two-thirds, and the remaining third gets used. A good rule of thumb: every metric on the screen needs a name attached to it. If nobody owns it, nobody acts on it.</p>
-                <p><strong>The metrics that reliably earn their place</strong> are the ones tied to a lever you can actually pull — conversion rate at a specific step, cost per acquisition by channel, gross margin by product line, time-to-resolution in support. The ones that rarely do are vanity aggregates: total pageviews, cumulative signups, follower counts. They go up. They tell you nothing about what to do tomorrow.</p>
-                <p><img src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Machine learning algorithm visualization" class="img-fluid rounded"></p>
-                <h3 class="mb-4 mt-5">Fix the Boring Layer First</h3>
-                <p>Before any of this works, the unglamorous part has to be right. In our experience this is where most data projects quietly fail:</p>
+                <h3 class="mb-4">The Most Expensive Misunderstanding in Our Industry</h3>
+                <p>A client asks for a website. Three weeks in, it turns out they need customer logins, a booking calendar, and a way for staff to manage availability. That's not a website — it's software with a homepage attached, and the budget, timeline and team are now all wrong.</p>
+                <p>It happens constantly, and it's rarely anyone's fault. "Website" is the word people have for anything that lives at a web address. So here is the distinction in plain terms, before it costs you a quarter.</p>
+                <p><img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Planning a digital project on a whiteboard" class="img-fluid rounded"></p>
+
+                <h3 class="mb-4 mt-5">The One Question That Separates Them</h3>
+                <p><strong>Does a visitor create or change data that has to be there when they come back?</strong></p>
+                <p>If no, it's a website. Every visitor sees roughly the same thing. A contact form that sends an email doesn't change this — the email leaves, nothing is stored, nobody logs in.</p>
+                <p>If yes, it's a web application. Accounts, saved state, permissions, records that must stay accurate. That means a database, authentication, a way to recover a forgotten password, an admin view, and a real answer to what happens when two people edit the same thing at once.</p>
+                <p>The gap between the two is not a matter of degree. A brochure site is content work; an application is software engineering, with testing, data modelling and ongoing operational responsibility attached.</p>
+
+                <h3 class="mb-4 mt-5">What Each One Realistically Involves</h3>
+                <p><strong>A website</strong> is measured in weeks. The work is largely design, content and performance: making it clear, fast, findable and persuasive. The main risk to the timeline is content — it's almost always the client's copy and photography that arrive late, not the build.</p>
+                <p><strong>A web application</strong> is measured in months, and roughly half the effort sits in places nobody demos: user management, permissions, error handling, data migration, admin tooling, and the tedious edge cases that decide whether the thing is trustworthy. When an app quote looks surprisingly high next to a website quote, this is usually why.</p>
+                <p><strong>A mobile app</strong> — meaning something in the App Store — is a further step again: two platforms, store review processes, release cycles, and users who may be running a version from eighteen months ago. Worth it when you genuinely need push notifications, offline use, or device hardware. Not worth it because an app feels more serious than a website.</p>
+                <p><img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Charting growth and project scope" class="img-fluid rounded"></p>
+
+                <h3 class="mb-4 mt-5">When a Website Is Quietly Enough</h3>
+                <p>Plenty of businesses describe an application and need a website with two integrations. Before committing to custom software, check whether an existing tool already solves it:</p>
                 <ul>
-                  <li><strong>One definition per metric.</strong> If finance and marketing calculate "active customer" differently, every meeting becomes an argument about whose number is correct. Write the definitions down once.</li>
-                  <li><strong>Trustworthy pipelines.</strong> A dashboard that was silently three days stale once will never be fully trusted again. Show the last-updated timestamp on the screen.</li>
-                  <li><strong>Access without a gatekeeper.</strong> If getting a number requires emailing someone, people stop asking, and decisions go back to being made on instinct.</li>
+                  <li><strong>Appointments</strong> – a scheduling tool embedded in your site handles reminders, calendars and payment, usually for the price of a coffee per month.</li>
+                  <li><strong>Selling things</strong> – a hosted store covers payments, tax and shipping rules, all of which are genuinely difficult to build well.</li>
+                  <li><strong>Gated content or memberships</strong> – mature platforms exist; building your own login system is a real ongoing security responsibility.</li>
+                  <li><strong>Internal processes</strong> – a spreadsheet plus an automation tool solves more business problems than anyone in our industry likes to admit.</li>
                 </ul>
-                <h3 class="mb-4 mt-5">When Machine Learning Is Actually Worth It</h3>
-                <p>Plenty of problems sold as machine learning are better solved by a well-chosen threshold and a clear report. ML earns its cost when you have genuine volume, a pattern too complex to write rules for, and a prediction that changes behaviour — demand forecasting across thousands of SKUs, fraud scoring in real time, churn prediction with enough history behind it.</p>
-                <p>It's a poor fit when your dataset is small, when the relationship is simple enough to state in a sentence, or when nobody has decided what they'd do differently if the prediction came back positive. That last one catches more projects than people expect.</p>
-                <p>The good news for 2026: you rarely need a research team any more. Cloud forecasting services and modern analytics warehouses cover most common cases at modest cost, so the bottleneck is clean data and a clear question — not talent.</p>
-                <p><img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Team collaborating on data analysis" class="img-fluid rounded"></p>
-                <h3 class="mb-4 mt-5">Build the One-Screen Version First</h3>
-                <p>If you're starting from scratch, build the version that fits on one screen and answers three questions the leadership team already argues about. Ship it, watch who opens it, and let the second version be shaped by what people actually reached for. Dashboards that grow from real use stay in use; dashboards specified in a single workshop rarely do.</p>
-                <p class="mt-5"><em>Qodebrik builds financial and operational dashboards that people keep open. <a href="index.html#contact-section">Let's discuss</a> the decisions yours needs to support.</em></p>
+                <p>Custom software earns its cost when the process <em>is</em> your business — when the workflow is genuinely unusual, when integration between systems is the whole point, or when you're selling access to the tool itself. It rarely earns its cost as a slightly nicer version of something you could subscribe to.</p>
+
+                <h3 class="mb-4 mt-5">If You Do Need an App, Scope It Honestly</h3>
+                <p>The first version should do one thing end to end for one type of user. Not a reduced version of everything — a complete version of the single most important journey. If a customer can sign up, book, pay and receive confirmation, you have something real to learn from. Six half-finished features teach you nothing.</p>
+                <p>Two things worth deciding early, because they're expensive to retrofit: who the different kinds of user are and what each may see, and what happens to the data if you stop using the system. A clear answer to both at the start prevents most of the painful conversations later.</p>
+
+                <h3 class="mb-4 mt-5">A Shortcut for the Brief</h3>
+                <p>Write one sentence: "A [type of user] uses this to [do something] so that [outcome]." If the sentence works without anyone logging in, brief a website. If it doesn't, you're commissioning software — and the brief needs to say so, so that everyone quotes the same thing.</p>
+                <p>Getting this right in the first conversation is the cheapest project decision you will make.</p>
+                <p class="mt-5"><em>Not sure which side of the line your idea falls on? <a href="index.html#contact-section">Tell us what you're trying to do</a> — we'll tell you honestly, including when the answer is a simpler build than you expected.</em></p>
                 <div class="mt-5 pt-4 border-top">
                   <span class="font-weight-bold">Tags:</span>
-                  <span class="badge badge-secondary">Dashboards</span>
-                  <span class="badge badge-secondary">Machine Learning</span>
-                  <span class="badge badge-secondary">Business Analytics</span>
-                  <span class="badge badge-secondary">Data Strategy</span>
+                  <span class="badge badge-secondary">Web Development</span>
+                  <span class="badge badge-secondary">Web Applications</span>
+                  <span class="badge badge-secondary">Project Planning</span>
+                  <span class="badge badge-secondary">Scoping</span>
                   <span class="badge badge-secondary">2026</span>
                 </div>
               </div>
@@ -143,8 +153,8 @@
                   <li><a href="index.html#home-section">Home</a></li>
                   <li><a href="index.html#about-section">About Us</a></li>
                   <li><a href="index.html#portfolio-section">Portfolio</a></li>
-                  <li><a href="#services-section">Our Services</a></li>
-                  <li><a href="#journal-section">Insights</a></li>
+                  <li><a href="index.html#services-section">Our Services</a></li>
+                  <li><a href="index.html#journal-section">Insights</a></li>
                 </ul>
               </div>
               <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
@@ -203,10 +213,10 @@
         </div>
       </div>
     </div>
+    <!-- Loader -->
     <div id="unslate_co--overlayer"></div>
     <div class="site-loader-wrap"><div class="site-loader"></div></div>
     <script src="js/scripts-dist.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
-
